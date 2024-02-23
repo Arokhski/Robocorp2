@@ -22,7 +22,7 @@ def order_robots_from_RobotSpareBin():
     open_website()
     download_order_csv()
     close_annoying_modal()
-    download_order_csv()
+    fill_order_form()
 
 
 
