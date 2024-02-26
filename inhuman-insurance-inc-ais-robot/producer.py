@@ -33,26 +33,6 @@ def produce_traffic_data():
     payloads = create_work_item_payloads(filtered_data)         #nutzt die ERNEUT gefilterten daten (zweite variable)
     save_work_item_payloads(payloads)
 
-
-@task
-def consume_traffic_data():
-    """
-    Inhuman Insurance, Inc. Artificial Intelligence System automation.
-    Consumes traffic data work items.
-    """
-    process_traffic_data()
-
-def process_traffic_data():
-    for item in workitems.inputs:
-        traffic_data = item.payload("traffic_data")
-
-def validate_traffic_data(traffic_data):
-    country = traffic_data["country"]
-    if len(country) == 3:
-        return True
-    else:
-        return False
-
 def load_traffic_data_as_table():
     json_data = json.load_json_from_file(TRAFFIC_JSON_FILE_PATH)
     return table.create_table(json_data["value"])
@@ -81,7 +61,7 @@ def create_work_item_payloads(traffic_data):
             year = row[YEAR_KEY],                           #...
             rate = row[RATE_KEY]        
         )
-        payloads.append(payload)                            #Variable payloads erhält den inhalt von payload
+        payloads.append(payload)                            #Variable payloads erhält den inhalt von payload aus jedem durchlauf (hintenangehängt)
     return payloads
 
 def save_work_item_payloads(payloads):
