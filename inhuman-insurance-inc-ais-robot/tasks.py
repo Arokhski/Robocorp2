@@ -1,4 +1,5 @@
 from robocorp.tasks import task
+from robocorp import workitems
 from RPA.HTTP import HTTP
 from RPA.JSON import JSON
 from RPA.Tables import Tables
@@ -8,6 +9,12 @@ json = JSON()
 table = Tables()
 
 TRAFFIC_JSON_FILE_PATH = "output/traffic.json"
+
+# JSON data keys
+COUNTRY_KEY = "SpatialDim"
+YEAR_KEY = "TimeDim"
+RATE_KEY = "NumericValue"
+GENDER_KEY = "Dim1"
 
 @task
 def produce_traffic_data():
@@ -21,8 +28,10 @@ def produce_traffic_data():
         overwrite=True,
     )
     traffic_data = load_traffic_data_as_table()
-    table.write_table_to_csv(traffic_data, "output/test.csv")
-    filtered_data = filter_and_sort_traffic_data(traffic_data)
+    filtered_data = filter_and_sort_traffic_data(traffic_data)  #erzeugt gefilterte Daten aus der Tabelle
+    filtered_data = get_latest_data_by_country(filtered_data)   #nutzt die gefiltrerten Daten in einer neuen Funktion
+    payloads = create_work_item_payloads(filtered_data)         #nutzt die ERNEUT gefilterten daten (zweite variable)
+    save_work_item_payloads(payloads)
 
 
 @task
@@ -31,14 +40,51 @@ def consume_traffic_data():
     Inhuman Insurance, Inc. Artificial Intelligence System automation.
     Consumes traffic data work items.
     """
-    print("consume")
+    process_traffic_data()
+
+def process_traffic_data():
+    for item in workitems.inputs:
+        traffic_data = item.payload("traffic_data")
+
+def validate_traffic_data(traffic_data):
+    country = traffic_data["country"]
+    if len(country) == 3:
+        return True
+    else:
+        return False
 
 def load_traffic_data_as_table():
     json_data = json.load_json_from_file(TRAFFIC_JSON_FILE_PATH)
     return table.create_table(json_data["value"])
 
 def filter_and_sort_traffic_data(data):
-    table.filter_table_by_column(data, "NumericValue", "<", 5.0)
-    table.filter_table_by_column(data, "Dim1", "==", "BTSX")
-    table.sort_table_by_column(data, "TimeDim", False)
+    max_rate = 5.0
+    both_genders = "BTSX"
+    table.filter_table_by_column(data, RATE_KEY, "<", max_rate)
+    table.filter_table_by_column(data, GENDER_KEY, "==", both_genders)
+    table.sort_table_by_column(data, YEAR_KEY, False)
     return data
+
+def get_latest_data_by_country(data):
+    data = table.group_table_by_column(data, COUNTRY_KEY)   #tabelle wird nach der spalte "SpatialDim" geordnet
+    latest_data_by_country = []                             #generiert noch leere variable
+    for group in data:
+        first_row = table.get_table_row(group, 0)           #entfernt erste spalte aus "data" aus, das zuvor nach SpatialDim sortiert wurde
+        latest_data_by_country.append(first_row)            #fügt diese daten der variablen hinzu (append)
+    return latest_data_by_country                           #ende der funktion, inhalt der variablen steht zur nutzung bereit
+
+def create_work_item_payloads(traffic_data):
+    payloads = []                                           #leere Variable
+    for row in traffic_data:
+        payload = dict(                                     #dict-Funktion (dictionary, jede Row ist ein neues dict) wird in Variable payload gespeichert
+            country = row[COUNTRY_KEY],                    #dictionary namens "country" enthaelt die zeile SpatialDim komplett
+            year = row[YEAR_KEY],                           #...
+            rate = row[RATE_KEY]        
+        )
+        payloads.append(payload)                            #Variable payloads erhält den inhalt von payload
+    return payloads
+
+def save_work_item_payloads(payloads):
+    for payload in payloads:
+        variables = dict(traffic_data = payload)
+        workitems.outputs.create(variables)
