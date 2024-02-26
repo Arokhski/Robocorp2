@@ -21,7 +21,7 @@ def order_robots_from_RobotSpareBin():
     )
     open_website()
     download_order_csv()
- 
+    archive_receipts()
    
 def open_website():
     """Open Website"""
@@ -35,7 +35,6 @@ def download_order_csv():
     orders = Tables().read_table_from_csv(path="orders.csv", header=True)
     for row in orders:
         fill_order_form(row)
-    archive_receipts()
 
 def close_annoying_modal():
     """Closes annoying modal"""
