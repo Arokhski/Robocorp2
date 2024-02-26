@@ -6281,3 +6281,22 @@
 {"when":1708687448,"controller":"rcc.robocorpcode","event":"robot exit","detail":"From rcc \"v17.12.0\" point of view, \"actual main robot run\" was FAILURE, reason: exit status 1","comment":"rcc point of view"}
 {"when":1708687448,"controller":"rcc.robocorpcode","event":"processes","detail":"final","comment":"count: 0"}
 {"when":1708687449,"controller":"rcc.robocorpcode","event":"stop","detail":"robot","comment":"done"}
+{"when":1708933741,"controller":"rcc.robocorpcode","event":"start task","detail":"name=Run Task from=c:\\Users\\MichaelaBudich\\OneDrive - publicplan GmbH\\Documents\\Lernordner\\Robocorp2\\my-order-robot\\robot.yaml","comment":"at task environment setup"}
+{"when":1708933741,"controller":"rcc.robocorpcode","event":"environment","detail":"build","comment":"Progress: 00/15 v17.12.0 0.092s Context: \"MichaelaBudich\" \u003cAzureAD\\MichaelaBudich@NB0116\u003e [windows_amd64/Microsoft Windows [Version 10.0.19045.4046]]."}
+{"when":1708933741,"controller":"rcc.robocorpcode","event":"environment","detail":"build","comment":"Progress: 01/15 v17.12.0 0.012s Fresh [shared mode] holotree environment 752335ad-1bf2-c513-bee0-131015c6bbb2. (parent/pid: 16912/5672)"}
+{"when":1708933741,"controller":"rcc.robocorpcode","event":"environment","detail":"build","comment":"Progress: 02/15 v17.12.0 0.021s Holotree blueprint is \"909b903e7a67b026\" [windows_amd64 with 7 workers on 8 CPUs from \"conda.yaml\"]."}
+{"when":1708933741,"controller":"rcc.robocorpcode","event":"environment","detail":"build","comment":"Progress: 14/15 v17.12.0 0.278s Restore space from library [with 7 workers on 8 CPUs]."}
+{"when":1708933742,"controller":"rcc.robocorpcode","event":"environment","detail":"build","comment":"Progress: 15/15 v17.12.0 0.571s Fresh holotree done [with 7 workers on 8 CPUs]."}
+{"when":1708933742,"controller":"rcc.robocorpcode","event":"start","detail":"robot","comment":"started"}
+{"when":1708933742,"controller":"rcc.robocorpcode","event":"run","detail":"robot","comment":"task run"}
+{"when":1708933742,"controller":"rcc.robocorpcode","event":"processes","detail":"updated","comment":"count from 0 to 1 ... map[19872:python.exe]"}
+{"when":1708933767,"controller":"rcc.robocorpcode","event":"processes","detail":"updated","comment":"count from 1 to 3 ... map[1672:node.exe 2384:cmd.exe 19872:python.exe]"}
+{"when":1708933771,"controller":"rcc.robocorpcode","event":"processes","detail":"updated","comment":"count from 3 to 11 ... map[1672:node.exe 2384:cmd.exe 5632:PrintDeps.exe 6284:PrintDeps.exe 6828:PrintDeps.exe 9592:conhost.exe 10784:PrintDeps.exe 14652:conhost.exe 19872:python.exe 20496:PrintDeps.exe 21264:conhost.exe]"}
+{"when":1708933771,"controller":"rcc.robocorpcode","event":"processes","detail":"updated","comment":"count from 11 to 9 ... map[872:chrome.exe 1672:node.exe 2384:cmd.exe 7744:chrome.exe 10728:chrome.exe 10788:chrome.exe 11124:chrome.exe 13780:chrome.exe 19872:python.exe]"}
+{"when":1708933772,"controller":"rcc.robocorpcode","event":"processes","detail":"updated","comment":"count from 9 to 11 ... map[872:chrome.exe 1672:node.exe 2384:cmd.exe 4936:chrome.exe 7744:chrome.exe 10728:chrome.exe 10788:chrome.exe 11124:chrome.exe 11136:chrome.exe 13780:chrome.exe 19872:python.exe]"}
+{"when":1708933776,"controller":"rcc.robocorpcode","event":"processes","detail":"updated","comment":"count from 11 to 12 ... map[872:chrome.exe 1672:node.exe 2384:cmd.exe 4936:chrome.exe 6752:chrome.exe 7744:chrome.exe 10728:chrome.exe 10788:chrome.exe 11124:chrome.exe 11136:chrome.exe 13780:chrome.exe 19872:python.exe]"}
+{"when":1708933776,"controller":"rcc.robocorpcode","event":"processes","detail":"updated","comment":"count from 12 to 11 ... map[872:chrome.exe 1672:node.exe 2384:cmd.exe 4936:chrome.exe 7744:chrome.exe 10728:chrome.exe 10788:chrome.exe 11124:chrome.exe 11136:chrome.exe 13780:chrome.exe 19872:python.exe]"}
+{"when":1708933815,"controller":"rcc.robocorpcode","event":"processes","detail":"updated","comment":"count from 11 to 1 ... map[19872:python.exe]"}
+{"when":1708933816,"controller":"rcc.robocorpcode","event":"robot exit","detail":"From rcc \"v17.12.0\" point of view, \"actual main robot run\" was SUCCESS.","comment":"rcc point of view"}
+{"when":1708933816,"controller":"rcc.robocorpcode","event":"processes","detail":"final","comment":"count: 0"}
+{"when":1708933817,"controller":"rcc.robocorpcode","event":"stop","detail":"robot","comment":"done"}

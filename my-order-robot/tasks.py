@@ -1,6 +1,7 @@
 from robocorp.tasks import task
 from robocorp import browser
 from RPA.Archive import Archive
+from RPA import FileSystem
 
 from RPA.HTTP import HTTP
 from RPA.PDF import PDF
@@ -82,4 +83,4 @@ def archive_receipts():
     Archive()
     archive=Archive()
 
-    archive.archive_folder_with_zip("output/", archive_name="Receipts.zip")
+    archive.archive_folder_with_zip(archive_name="Receipts.zip")
