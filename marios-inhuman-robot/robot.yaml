@@ -6,7 +6,7 @@ tasks:
     Produce data:
     shell: python -m robocorp.tasks run producer.py -t produce_traffic_data
 
-  Consume data:
+    Consume data:
     shell: python -m robocorp.tasks run consumer.py -t consume_traffic_data
 
 environmentConfigs:

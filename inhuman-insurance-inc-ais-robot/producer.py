@@ -49,7 +49,7 @@ def get_latest_data_by_country(data):
     data = table.group_table_by_column(data, COUNTRY_KEY)   #tabelle wird nach der spalte "SpatialDim" geordnet
     latest_data_by_country = []                             #generiert noch leere variable
     for group in data:
-        first_row = table.get_table_row(group, 0)           #entfernt erste spalte aus "data" aus, das zuvor nach SpatialDim sortiert wurde
+        first_row = table.pop_table_row(group)           #entfernt erste spalte aus "data" aus, das zuvor nach SpatialDim sortiert wurde
         latest_data_by_country.append(first_row)            #fügt diese daten der variablen hinzu (append)
     return latest_data_by_country                           #ende der funktion, inhalt der variablen steht zur nutzung bereit
 
